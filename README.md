@@ -1,3 +1,10 @@
-Desafios Do Livro Introdução a Computação da Lógica aos jogos com Ruby de Guilherme Silveira.
+# Challenges
 
-Os códigos foram todos feitos na linguagem de programação Ruby.
+Desafios de programação baseados no livro Introdução a Computação - Da Lógica aos jogos com Ruby.
+
+Os desafios foram feitos visando o aprendizado da sintaxe da linguagem, e algumas boas praticas.
+
+# A Fazer
+
++ Refatoração em algumas partes do codigo visando melhor leitura.
++ Testes em Rspec
