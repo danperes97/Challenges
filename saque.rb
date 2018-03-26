@@ -51,7 +51,6 @@ def libera_dinheiro(quantia, dinheiro_disponivel)
 end
 
 def mostra_dinheiro_sacado(dinheiro)
-  byebug
   dinheiro = dinheiro
 
   dinheiro_retirado = dinheiro.group_by(&:itself).map { |nota, quantidade|  [nota , quantidade.size] }
