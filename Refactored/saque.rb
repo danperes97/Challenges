@@ -1,5 +1,6 @@
 class BankBox
   attr_reader :available_cash, :total_available
+  attr_writer :total_available
 
   def initialize()
     @available_cash   = available_cash_hash
@@ -18,24 +19,32 @@ class BankBox
   end
 
   def total_count
-    self.available_cash.reduce(0) do |acc, arr|
-      acc += arr[0].to_i * arr[1].to_i
+    available_cash_hash.transform_keys(&:to_i).reduce(0) do |acc, arr|
+      acc += arr[0] * arr[1]
     end
   end
 
   def money_taken_hash(value)
-    self.available_cash.reduce([]) do |acc, arr|
-      if arr[0].to_i <= value
-        value -= arr[0].to_i
-        acc << arr[0].to_i
-      else
-        acc
-      end
+    self.available_cash.transform_keys(&:to_i).reduce([]) do |acc, arr|
+      return acc unless arr[0] <= value
+      value -= arr[0]
+      acc << arr[0]
     end
   end
 
   def take_money(value)
     money = money_taken_hash(value)
-    money.reduce(&:+) == value ? money : :not_availabe
+    if money.reduce(&:+) == value
+      debit_money(value)
+      money
+    else
+      :not_availabe
+    end
+  end
+
+  private
+
+  def debit_money(value)
+    self.total_available -= value
   end
 end
